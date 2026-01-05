@@ -1,0 +1,10 @@
+API/bin
+Domain/bin
+Persistence/bin
+Application/bin
+API/obj
+Domain/obj
+Persistence/obj
+Application/obj
+CourseAssets.zip
+CourseAssets
