@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
 function App() {
-  const [activities, setActivities] = useState([]); // remembers the activities and sets them. Empty array initially.
+  const [activities, setActivities] = useState<Activity[]>([]); // remembers the activities and sets them. Empty array initially.
 
   // is being called after this component mounted.
   useEffect(() => {
-    fetch('https://localhost:5001/api/activties') // returns a pomise
+    fetch('https://localhost:5001/api/activities') // returns a pomise
       .then(response => response.json()) //unwrap the promise
       .then(data => setActivities(data))
   }, []); // list of dependencies at the end. Their upadtate will trigger the hook
