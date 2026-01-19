@@ -1,3 +1,5 @@
+import { ListItem, ListItemText, Typography } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react"
 
 function App() {
@@ -5,20 +7,21 @@ function App() {
 
   // is being called after this component mounted.
   useEffect(() => {
-    fetch('https://localhost:5001/api/activities') // returns a pomise
-      .then(response => response.json()) //unwrap the promise
-      .then(data => setActivities(data))
+    axios.get<Activity[]>('https://localhost:5001/api/activities') // returns a pomise
+      .then(response => setActivities(response.data))
   }, []); // list of dependencies at the end. Their upadtate will trigger the hook
   const title = "Activities:"
   return (
-    <div>
-      <h3 className="app" style={{color: "red", fontSize: 14}}>{title}</h3>
+    <>
+      <Typography variant='h3'>{title}</Typography>
       <ul>
         {activities.map((activity) => (
-          <li key={activity.id}>{activity.title}</li>
+          <ListItem key={activity.id}>
+            <ListItemText>{activity.title}</ListItemText>
+          </ListItem>
         ))}
       </ul>
-    </div>
+    </>
   )
   
 }
